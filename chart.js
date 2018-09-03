@@ -5,6 +5,7 @@ var nodes = [];
 var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
+var count=0;
 
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
@@ -344,10 +345,14 @@ function mouseover(d, i) {
     .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
 		.html(infoBox)
 			.style("display","block");
-	
-	
-	}
 
+	if(count%6==0)
+		d3.select("#chart1").style("height", parseInt(d3.select("#chart1").style("height")) + 46 + "px");
+	
+	count++;
+	d3.select("#chart1").append("text").html( "<img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'>")
+	
+}
 function mouseout() {
 	// no more tooltips
 		var mosie = d3.select(this);
