@@ -19,9 +19,14 @@ var entityCentres = {
 		society: {x: w / 1.12, y: h  / 3.2 },
 		pub: {x: w / 1.8, y: h / 2.8},
 		individual: {x: w / 3.65, y: h / 3.3},
+		three: {x: w / 4, y: h / 2.8},
+		five: {x: w / 4, y: h / 1.8},
+		four: {x: w / 1.25, y: h / 1.9},
+		two: {x: w / 1.25, y: h  / 3.2 },
+		one: {x: w / 4, y: h / 4.5}
 	};
 
-var fill = d3.scale.ordinal().range(["#F02233", "#087FBD", "#FDBB30"]);
+var fill = d3.scale.ordinal().range(["#002233", "#F87FBD", "#0DBB30"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -48,6 +53,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
+		$("#view-amount-type").fadeOut(250);
 		return total();
 		//location.reload();
 	}
@@ -57,6 +63,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
@@ -65,16 +72,28 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250);
 		return donorType();
 	}
-	if (name === "group-by-money-source")
+	if (name === "group-by-money-source") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250);
 		return fundsType();
 	}
+	if (name === "group-by-amount") {
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(1000);
+		$("#view-amount-type").fadeIn(250);
+		return amountType();
+	}
+}
 
 function start() {
 
@@ -92,6 +111,7 @@ function start() {
 		.attr("r", 0)
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
+		.on("click", mouseclick)
 		.on("mouseout", mouseout);
 		// Alternative title based 'tooltips'
 		// node.append("title")
@@ -142,6 +162,14 @@ function fundsType() {
 		.start();
 }
 
+function amountType() {
+	force.gravity(0)
+		.friction(0.75)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", amounts)
+		.start();
+}
+	
 function parties(e) {
 	node.each(moveToParties(e.alpha));
 
@@ -158,6 +186,14 @@ function entities(e) {
 
 function types(e) {
 	node.each(moveToFunds(e.alpha));
+
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
+
+function amounts(e) {
+	node.each(moveToAmounts(e.alpha));
 
 
 		node.attr("cx", function(d) { return d.x; })
@@ -236,6 +272,30 @@ function moveToFunds(alpha) {
 			centreX = entityCentres[d.entity].x + 60;
 			centreY = 380;
 		}
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+}
+
+function moveToAmounts(alpha) {
+	return function(d) {
+		var amount_case;	
+		
+		if (d.value >= 10000000) {
+			amount_case='one';
+		} else if (d.value >= 1000000) {
+			amount_case='two';
+		} else if (d.value >= 500000) {
+			amount_case='three';
+		} else  if (d.value <= 100000) {
+			amount_case='four';
+		} else  {
+			amount_case='five';
+		} 
+		
+		var centreX = entityCentres[amount_case].x;
+		var centreY = entityCentres[amount_case].y
+
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
@@ -345,8 +405,18 @@ function mouseover(d, i) {
 		.html(infoBox)
 			.style("display","block");
 	
-	
+	var msg = new SpeechSynthesisUtterance(donor);
+	window.speechSynthesis.speak(msg);
+	var msg = new SpeechSynthesisUtterance(comma(amount)+"pounds");
+	window.speechSynthesis.speak(msg);
+
 	}
+function mouseclick(d, i) {
+	// tooltip new_tab
+	var mosie = d3.select(this);
+	var donor = d.donor;
+	window.open('https://www.google.gr/search?safe=active&q='+ donor, '_blank');
+}
 
 function mouseout() {
 	// no more tooltips
