@@ -34,53 +34,56 @@
 <!-- Add feature detection and noscript -->
 
 <body>
-
+ <audio id="audioElement" src="click.wav"></audio>
     <header role="banner" id="title">
-        <h1>Who's funding the big three?</h1>
+        <div class="magnifiable"><h1>Who's funding the big three?</h1></div>
     </header>
     <nav role="navigation">
+        <div class="magnifiable"> 
         <ul>
-            <li><a href="#" role="button" class="pure-button switch" id="all-donations">All money</a>
+            <li><a href="#" role="button" class="pure-button switch" id="all-donations" onclick="document.getElementById('audioElement').play()">All money</a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-money-source">The public's purse</a>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-money-source" onclick="document.getElementById('audioElement').play()">The public's purse</a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-party">Split by party</a>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-party" onclick="document.getElementById('audioElement').play()">Split by party</a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-donor-type">Split by type of donor</a>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-donor-type" onclick="document.getElementById('audioElement').play()">Split by type of donor</a>
             </li>
-        </ul>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-amount" onclick="document.getElementById('audioElement').play()">Split by amount </a>
+            </li>
+        </ul></div>
     </nav>
 
     <div id="annotations">
 
         <!-- Initial annotations -->
         <div id="initial-content">
-            <h2>Political donations and funding accepted by the Conservatives, Labour and Liberal Democrats between the 2010 general election and August 2013, when this data was collected.</h2>
-            <p>Each circle represents the total amount donated by a single donor group, funding organisation or individual during that period.</p>
-            <p>Hover over a circle to show further information.</p>
+           <div class="magnifiable_width"> <h2>Political donations and funding accepted by the Conservatives, Labour and Liberal Democrats between the 2010 general election and August 2013, when this data was collected.</h2></div>
+            <div class="magnifiable_width"><p>Each circle represents the total amount donated by a single donor group, funding organisation or individual during that period.</p></div>
+            <div class="magnifiable_width"><p>Hover over a circle to show further information.</p></div>
 
-            <p>Get an immediate overview of how party funding is shaped in Britain today by selecting one of the options at the top of the page.</p>
-            <p>Data is based on all reportable donations over &#163;7500.</p>
-            <p>Data source: <a href="http://www.electoralcommission.org.uk/">The Electoral Commission.</a>
-            </p>
+            <div class="magnifiable_width"><p>Get an immediate overview of how party funding is shaped in Britain today by selecting one of the options at the top of the page.</p></div>
+            <div class="magnifiable_width"><p>Data is based on all reportable donations over &#163;7500.</p></div>
+            <div class="magnifiable_width"><p>Data source: <a href="http://www.electoralcommission.org.uk/">The Electoral Commission.</a>
+            </p></div>
         </div>
         <div id="value-scale">
-            <div id="f">
+            <div id="f" class="magnifiable">
                 <p>&#8212;UK average salary</p>
             </div>
-            <div id="a">
+            <div id="a" class="magnifiable">
                 <strong>&#163;25k &#8212;</strong>
             </div>
-            <div id="b">
+            <div id="b" class="magnifiable">
                 <strong>&#163;50k &#8212;</strong>
             </div>
-            <div id="c">
+            <div id="c" class="magnifiable">
                 <strong>&#163;100k &#8212;</strong>
             </div>
-            <div id="d">
+            <div id="d" class="magnifiable">
                 <strong>&#163;500k &#8212;</strong>
             </div>
-            <div id="e">
+            <div id="e" class="magnifiable">
                 <strong>&#163;1m &#8212;</strong>
             </div>
         </div>
@@ -89,12 +92,12 @@
         <!-- Public or private money annotations -->
         <div id="view-source-type">
             <div id="public-or-private-money" class="public-private">
-                <h3>Public money vs private cash</h3>
-                <p>Despite general public opposition to more taxpayer money being given to political parties, public funds are already provided to opposition parties in the form of 'short money' from the House of Commons, House of Lords and Scottish Parliament.</p>
-                <p>The parties also benefit from 'Policy development grants' given by the Electoral Commission.</p>
+                <div class="magnifiable_width"><h3>Public money vs private cash</h3></div>
+                <div class="magnifiable_width"><p>Despite general public opposition to more taxpayer money being given to political parties, public funds are already provided to opposition parties in the form of 'short money' from the House of Commons, House of Lords and Scottish Parliament.</p></div>
+                <div class="magnifiable_width"><p>The parties also benefit from 'Policy development grants' given by the Electoral Commission.</p></div>
             </div>
             <div id="public-or-private-money-split" class="public-private">
-                <div id="private-money">
+                <div id="private-money" class="magnifiable">
                     <h5>Private Donations</h5>
                     <strong>Total: &#163;89,752,524
                         </strong>
@@ -102,7 +105,7 @@
                                 <strong>77%</strong>
                             </p>
                 </div>
-                <div id="public-money">
+                <div id="public-money" class="magnifiable">
                     <h5>Public Funds</h5>
                     <strong>Total: &#163;26,579,038
                         </strong>
@@ -115,8 +118,8 @@
         <!-- End public or private money -->
 
         <div id="view-party-type">
-            <h3>Income for each party from private sources.</h3>
-            <div id="conservative">
+            <div class="magnifiable_width"><h3>Income for each party from private sources.</h3></div>
+            <div id="conservative" class="magnifiable_width">
                 <h5>Conservative Party</h5>
                 <strong>Total: &#163;43.7 million
                     </strong>
@@ -129,7 +132,7 @@
                             <br>
                             <strong>27%</strong>of the total</p>
             </div>
-            <div id="labour">
+            <div id="labour" class="magnifiable_width">
                 <h5>Labour Party</h5>
                 <strong>Total: &#163;38.9 million
                     </strong>
@@ -142,7 +145,7 @@
                             <br>
                             <strong>81%</strong>of the total</p>
             </div>
-            <div id="libdem">
+            <div id="libdem" class="magnifiable_width">
                 <h5>Liberal Democrats</h5>
                 <strong>Total: &#163;7.1 million
                     </strong>
@@ -157,7 +160,7 @@
             </div>
         </div>
         <div id="view-donor-type">
-            <div id="individual">
+            <div id="individual" class="magnifiable_width">
                 <h5>Individuals</h5>
                 <strong>Total: &#163; 35,191,222
                     </strong>
@@ -165,7 +168,7 @@
                             <strong>39%</strong>
                         </p>
             </div>
-            <div id="company">
+            <div id="company" class="magnifiable_width">
                 <h5>Companies</h5>
                 <strong>Total: &#163; 17,052,129
                     </strong>
@@ -173,7 +176,7 @@
                             <strong>19%</strong>
                         </p>
             </div>
-            <div id="union">
+            <div id="union" class="magnifiable_width">
                 <h5>Trade Unions</h5>
                 <strong>Total: &#163;31,474,649
                     </strong>
@@ -181,7 +184,7 @@
                             <strong>35%</strong>
                         </p>
             </div>
-            <div id="society">
+            <div id="society" class="magnifiable_width">
                 <h5>Societies</h5>
                 <strong>Total: &#163;4,550,129
                     </strong>
@@ -189,7 +192,7 @@
                             <strong>5%</strong>
                         </p>
             </div>
-            <div id="other">
+            <div id="other" class="magnifiable_width">
                 <h5>Others</h5>
                 <strong>Total: &#163; 1,484,395
                     </strong>
@@ -198,6 +201,55 @@
                         </p>
             </div>
         </div>
+        
+        <div id="view-amount-type">
+            <div id="TenMillion" class="magnifiable_width">
+                <h5> Amount > &#163; 10 Million</h5>
+				<strong>Count: 2</strong></br>
+                <strong>Total: &#163; 31,548,281
+                    </strong>
+                        <p>Proportion of all donations:
+                            <strong>27%</strong>
+                        </p>
+            </div>
+            <div id="Million" class="magnifiable_width">
+                <h5> &#163; 1M < Amount < &#163; 10M </h5>
+				<strong>Count: 13</strong></br>
+                <strong>Total: &#163; 32,804,492
+                    </strong>
+                        <p>Proportion of all donations:
+                            <strong>28%</strong>
+                        </p>
+            </div>
+            <div id="halfMillion" class="magnifiable_width">
+                <h5> &#163; 500K < Amount < &#163; 1M </h5>
+				<strong>Count: 16</strong></br>
+                <strong>Total: &#163; 10,996,813
+                    </strong>
+                        <p>Proportion of all donations:
+                            <strong>9%</strong>
+                        </p>
+            </div>
+            <div id="hundredK" class="magnifiable_width">
+                <h5> &#163; 100K < Amount > &#163; 500K </h5>
+				<strong>Count: 122</strong></br>
+                <strong>Total: &#163; 22,164,252
+                    </strong>
+                        <p>Proportion of all donations:
+                            <strong>20%</strong>
+                        </p>
+            </div>
+            <div id="lessHundred" class="magnifiable_width">
+                <h5> &#163; 7.5K< Amount < &#163; 100K</h5>
+				<strong>Count: 690</strong></br>
+                <strong>Total: &#163; 18,817,724
+                    </strong>
+                        <p>Proportion of all donations:
+                            <strong>16%</strong>
+                        </p>
+            </div>
+        </div>
+
     </div>
     <div id="chart"></div>
 
