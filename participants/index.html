@@ -722,10 +722,106 @@ anime.timeline({loop: true})
   <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
   <!-- >>>>>>>>>>>>>>>>>>>>>>> Position #016 starting... >>>>>>>>>>>>>>>>>>>>>>> -->
   <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-  <div style="width: fit-content; float: left; margin: 10px 10px 10px 10px;">
-        <p>&nbsp;Position #016&nbsp;</p>
-        <p>&nbsp;Put your content!&nbsp;</p>
+  <div style="width: fit-content; float: left; margin: 10px 10px 10px 10px; border: 1px solid; border-radius: 5px; background-color: #e5e5e5;">
+        <div style="padding: 7px; margin-top: 5px;">
+			 
+			
+			<div id="absoluteOffset">
+			  <div class="line">
+				<div class="square el">
+				<img style="padding-top: 5px; " src="https://avatars0.githubusercontent.com/u/36332325?s=460&v=4" height="40" width="40"> 
+				<span class="aido"><span class="aidoTxt">
+			
+			&nbsp;Aidonis&nbsp;</span></span>
+			  </div>
+			  
+			</div>
+			
+		</div>
+        
   </div>
+  </div>
+  <script>
+  // Wrap every letter in a span
+
+   
+   animeAido.timelines["aidoTxt"] = anime.timeline({loop: true})
+.add({
+    targets: '#absoluteOffset .square.el',
+	translateY: -12,
+    translateX: 12,
+    easing: 'easeOutExpo',
+	backgroundColor: [
+    {value: '#FFF'}, // Or #FFFFFF
+    
+  ],
+    offset: 1000 // Starts at 1000ms of the timeline
+  })
+  .add({
+    targets: '#absoluteOffset .circle.el',
+    translateX: -12,
+	translateY: 12,
+    easing: 'easeOutExpo',
+    offset: 500 // Starts at 500ms of the timeline
+	
+  })
+  .add({
+    targets: '#absoluteOffset .triangle.el',
+    translateX: -5,
+    easing: 'easeOutExpo',
+    offset: 0 // Starts at 0ms of the timeline
+  });   
+  /*.add({
+    targets: '.aido .aidoTxt',
+    scale: [0.1,2],
+    opacity: [0,5],
+    translateZ: 8,
+	translateY: 250,
+    easing: "easeOutExpo",
+	
+    duration: 1500,
+    delay: function(el, i) {
+      return 555 * (i+1)
+    }
+  })
+  .add({
+    targets: '.aido .aidoTxt',
+    
+	translateX: -250,
+    easing: "easeOutExpo",
+
+    duration: 1500
+   
+  })
+  .add({
+    targets: '.aido .aidoTxt',
+    scale: [0.1,2],
+    opacity: [0,5],
+    translateZ: 8,
+	translateY: -25,
+    easing: "easeOutExpo",
+	
+    duration: 1500,
+    delay: function(el, i) {
+      return 555 * (i+1)
+    }
+  })
+  .add({
+    targets: '.ml2 .line',
+    scaleX: [0,9],
+    opacity: [0.8,1],
+	translateX: -25,
+    easing: "easeOutExpo",
+    duration: 300,
+	translateZ: 3,
+    offset: '-=1500',
+    delay: function(el, i, l) {
+      return 350 * (l - i);
+    }})
+  ;
+ 
+  })*/    
+  </script>
   <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
   <!-- <<<<<<<<<<<<<<<<<<<<<<< ...Position #016 ending <<<<<<<<<<<<<<<<<<<<<<< -->
   <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
