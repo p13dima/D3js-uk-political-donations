@@ -2594,9 +2594,64 @@ anime.timeline({loop: true})
   <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
   <!-- >>>>>>>>>>>>>>>>>>>>>>> Position #050 starting... >>>>>>>>>>>>>>>>>>>>>>> -->
   <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-  <div style="width: fit-content; float: left; margin: 10px 10px 10px 10px;">
-        <p>&nbsp;Position #050&nbsp;</p>
-        <p>&nbsp;Put your content!&nbsp;</p>
+<div id="display" style="width: fit-content; float: left; margin: 10px 10px 10px 10px;">
+  
+	<img src="https://avatars0.githubusercontent.com/u/17276515?s=460&v=4" id= "image" height="42" width="42">
+	<h1 class="ml12">p13soup</h1>
+
+
+<script>
+$('.ml12').each(function(){
+  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml12 .letter',
+    translateX: [40,0],
+    translateZ: 0,
+    opacity: [0,1],
+    easing: "easeOutExpo",
+    duration: 1200,
+    delay: function(el, i) {
+      return 500 + 30 * i;
+    }
+  }).add({
+    targets: '.ml12 .letter',
+    translateX: [0,-30],
+    opacity: [1,0],
+    easing: "easeInExpo",
+    duration: 1100,
+    delay: function(el, i) {
+      return 100 + 30 * i;
+    }
+  });
+</script>
+
+<style>
+.ml12 {
+  font-weight: 200;
+  font-size: 2em;
+  letter-spacing: 0.1em;
+  float: right;
+}
+
+.ml12 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+#display{
+	background-color:#d8deea;
+	border:1px solid;
+}
+#image{
+	float: left;
+	margin-top: 15px;
+	margin-right: 7px;
+	margin-left: 5px;
+	border:3px solid;
+}
+</style>
   </div>
   <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
   <!-- <<<<<<<<<<<<<<<<<<<<<<< ...Position #050 ending <<<<<<<<<<<<<<<<<<<<<<< -->
