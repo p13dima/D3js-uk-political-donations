@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>2013029</title>
+	
+
+</head>
+<body>
+	<h1> Contributors</h1>
+	<div id = "display"></div>
+	
+	<script>
+		function start(){
+			var source  = "https://api.github.com/repos/ioniodi/D3js-uk-political-donations/contributors?per_page=200";
+			var req = new XMLHttpRequest();	//πορσπέλαση των XML δεδομένων από τη σελίδα των github Insights του αποθετηρίου του project
+			req.open("get", source, false);	//αίτημα λήψη των δεδομένων
+			req.send();		//αποστολή του αιτήματος
+			var data = JSON.parse(req.responseText);  //parse τα δεδομένα από το github Insights και τοποθέτηση στον πίνακα data
+			var row, col, image;
+			row = document.createElement("table");		//δημιουργία πίνακα (table) στον παραγόμενο html κώδικα
+			document.getElementById("display").appendChild(row); //τοποθέτηση του παραγόμενου html κώδικα εντός του <div id="display"></div> του παραπάνω html Κώδικα αυτού του αρχείου
+			for (var i =0;i<data.length;i++){		//για κάθε στοιχείο της δομής data (άρα για κάθε contributor)
+				if(i%7==0) {
+					row = document.createElement("tr");		//κάθε 7 contributors δημιουργία html κώδικα νέας γραμμής στον πίνακα (table)
+					document.getElementById("display").appendChild(row); //τοποθέτηση του παραγόμενου html κώδικα εντός του <div id="display"></div> 
+					}
+				col = document.createElement("td");	//δημιουργία νέου κελιού στην τρέχουσα γραμμή του πίνακα (table) στον παραγόμενο html κώδικα
+				image = new Image(200, 200);	//δημιουργία στοιχείου εικόνας
+				image.src = data[i].avatar_url;	//λήψη του δεδομένου της εικόνας του contributor από τον πίνακα των δεδομένων
+	         	col.append(image);	//τοποθέτηση της εικόνας του κάθε contributor εντός του τελευταίου <td> στοιχείου του παραγόμενου html κώδικα
+				col.innerHTML += "<p><b>"+data[i].login + "</b></br> Contributions: "+data[i].contributions +" </p>"; //δημιουργία html κώδικα του github username και του πλήθος των contributions στο τρέχον κελί του πίνακα
+	         	document.getElementById("display").appendChild(col);   //τοποθέτηση του παραγόμενου html κώδικα εντός του <div id="display"></div>  		
+			}
+		}
+		window.onload = start();	//κλήση της παραπάνω συνάρτησης για τη δημιουργία και προβολή του παραγόμενου html κώδικα
+	</script>
+
+</body>
+</html>
